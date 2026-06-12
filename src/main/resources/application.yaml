@@ -9,3 +9,10 @@ spring:
     hibernate:
       ddl-auto: update
     generate-ddl: true
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  servlet:
+    context-path: /api
