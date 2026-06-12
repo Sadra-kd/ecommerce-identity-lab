@@ -1,19 +1,24 @@
 package com.khodadadzadeh.ecommerce_identity_lab.product.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
+import java.math.BigDecimal;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "product")
 public class Product {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    private String name;
+    private Long quantity;
+    private BigDecimal price;
+    private String description;
 }
