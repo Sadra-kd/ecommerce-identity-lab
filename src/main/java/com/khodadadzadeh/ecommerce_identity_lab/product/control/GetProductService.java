@@ -7,19 +7,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.function.Consumer;
+import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class EditProductService {
+public class GetProductService {
 
     private final ProductRepository productRepository;
 
-    public Product edit(Long id, Consumer<Product> updater) {
-        Product product = productRepository.findById(id)
+    public Product findById(Long id) {
+        return productRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("error.product.not-found", id));
-        updater.accept(product);
-        return product;
+    }
+
+    public List<Product> findAll() {
+        return productRepository.findAll();
     }
 }
